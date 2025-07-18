@@ -40,4 +40,16 @@ class ExtratoBancarioRepository {
       return await extratoBancarioApiProvider.delete(id) ?? false;
     }
   }
+
+  Future deleteByDateRange(Filter filter) async {
+    await extratoBancarioDriftProvider.deleteByDateRange(filter);
+  }
+
+  Future exportDataToIncomesAndExpenses(Filter filter) async {
+    await extratoBancarioDriftProvider.exportDataToIncomesAndExpenses(filter);
+  }
+
+  Future reconcileTransactions(Filter filter) async {
+    await extratoBancarioDriftProvider.reconcileTransactions(filter);
+  } 
 }

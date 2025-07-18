@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
+import 'package:financeiro_pessoal/app/infra/backup_restore_helper.dart';
 import 'package:financeiro_pessoal/app/controller/theme_controller.dart';
 import 'package:financeiro_pessoal/app/infra/infra_imports.dart';
 import 'package:financeiro_pessoal/app/page/shared_widget/message_dialog.dart';
@@ -216,24 +217,59 @@ class MainSideDrawer extends StatelessWidget {
 						),
 					),
 
-					ListTile(
-						enabled: Session.loggedInUser.administrador == 'S'
-							? true
-								: Session.accessControlList.where( ((t) => t.funcaoNome == 'extrato_bancario') ).toList().isNotEmpty
-									? Session.accessControlList.where( ((t) => t.funcaoNome == 'extrato_bancario') ).toList()[0].habilitado == 'S'
-									: false,
-						onTap: () {
-							//TODO: implementar a copia de segurança Get.toNamed(Routes.extratoBancarioListPage);
-						},
-						title: const Text(
-							'Cópia de Segurança',
-							style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
-						),
-						leading: Icon(
-							iconDataList[Random().nextInt(10)],
-							color: iconColorList[Random().nextInt(10)],
-						),
-					),
+          ListTile(
+            onTap: () {
+              Get.defaultDialog(
+                title: "Cópia de Segurança",
+                titleStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.blueAccent, // Cor do título
+                ),
+                content: const Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Icon(Icons.backup, size: 50, color: Colors.blueAccent), // Ícone para indicar backup
+                    SizedBox(height: 10),
+                    Text(
+                      "Escolha uma opção para backup ou restauração.",
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      await BackupRestoreHelper.createBackup();
+                      Get.back(); // Fecha o diálogo após a ação
+                    },
+                    child: const Text("Fazer Backup"),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      await BackupRestoreHelper.restoreBackup();
+                      Get.back(); // Fecha o diálogo após a ação
+                    },
+                    child: const Text("Restaurar Backup"),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(Get.context!).pop(), // Fecha o diálogo sem ação
+                    child: const Text("Cancelar"),
+                  ),
+                ],
+                barrierDismissible: true, // Permite fechar o diálogo clicando fora dele
+              );
+            },
+            title: const Text(
+              'Cópia de Segurança',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: const Icon(
+              Icons.backup,
+              color: Colors.blueGrey,
+            ),
+          ),
 
           const Divider(),
 

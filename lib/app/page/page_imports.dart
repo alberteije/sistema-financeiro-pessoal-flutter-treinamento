@@ -5,7 +5,6 @@ export 'modules/lancamento_despesa/lancamento_despesa_list_page.dart';
 export 'modules/lancamento_despesa/lancamento_despesa_edit_page.dart';
 export 'modules/resumo/resumo_list_page.dart';
 export 'modules/extrato_bancario/extrato_bancario_list_page.dart';
-export 'modules/extrato_bancario/extrato_bancario_edit_page.dart';
 export 'modules/metodo_pagamento/metodo_pagamento_list_page.dart';
 export 'modules/metodo_pagamento/metodo_pagamento_edit_page.dart';
 export 'modules/conta_receita/conta_receita_list_page.dart';

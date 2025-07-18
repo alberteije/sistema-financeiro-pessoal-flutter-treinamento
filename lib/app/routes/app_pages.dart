@@ -21,7 +21,6 @@ class AppPages {
 		GetPage(name: Routes.lancamentoDespesaEditPage, page:()=> LancamentoDespesaEditPage()),
 		GetPage(name: Routes.resumoListPage, page:()=> const ResumoListPage(), binding: ResumoBindings()), 
 		GetPage(name: Routes.extratoBancarioListPage, page:()=> const ExtratoBancarioListPage(), binding: ExtratoBancarioBindings()), 
-		GetPage(name: Routes.extratoBancarioEditPage, page:()=> ExtratoBancarioEditPage()),
 		GetPage(name: Routes.metodoPagamentoListPage, page:()=> const MetodoPagamentoListPage(), binding: MetodoPagamentoBindings()), 
 		GetPage(name: Routes.metodoPagamentoEditPage, page:()=> MetodoPagamentoEditPage()),
 		GetPage(name: Routes.contaReceitaListPage, page:()=> const ContaReceitaListPage(), binding: ContaReceitaBindings()), 
